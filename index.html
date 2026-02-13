@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GTA SA PS2 Cheats</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0b0f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GTA Cheats">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+    --bg:#0a0b0f;
+    --panel:#141821;
+    --panel-2:#1a2130;
+    --accent:#ffb000;
+    --accent-2:#4df3d9;
+    --muted:#9aa4b2;
+    --text:#f5f7fb;
+    --outline:rgba(255,255,255,0.08);
+    --shadow:0 20px 50px rgba(0,0,0,0.45);
+}
+
+*{box-sizing:border-box;}
+
+body{
+    margin:0;
+    font-family:"Space Grotesk", system-ui, -apple-system, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(255,176,0,0.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(77,243,217,0.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%);
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:-200px;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><g fill="white" opacity="0.04"><circle cx="4" cy="6" r="1"/><circle cx="44" cy="34" r="1"/><circle cx="90" cy="12" r="1"/><circle cx="120" cy="70" r="1"/><circle cx="30" cy="96" r="1"/><circle cx="78" cy="110" r="1"/><circle cx="112" cy="128" r="1"/></g></svg>');
+    z-index:-1;
+    opacity:0.5;
+}
+
+#splash{
+    position:fixed;
+    inset:0;
+    background:#050608;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+}
+
+#splash .splash-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    padding:28px 34px;
+    border-radius:18px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border:1px solid var(--outline);
+    box-shadow:var(--shadow);
+    animation:pop 0.7s ease;
+}
+
+#splash img{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+    filter:drop-shadow(0 12px 22px rgba(0,0,0,0.45));
+}
+
+#splash h2{
+    font-family:"Staatliches", sans-serif;
+    letter-spacing:2px;
+    font-size:28px;
+    margin:0;
+}
+
+@keyframes pop{
+    0%{transform:scale(.6); opacity:0}
+    100%{transform:scale(1); opacity:1}
+}
+
+#app{
+    display:none;
+    padding:20px 16px 40px;
+}
+
+.container{
+    max-width:820px;
+    margin:0 auto;
+}
+
+.hero{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    padding:20px;
+    border-radius:20px;
+    background:linear-gradient(160deg, rgba(255,176,0,0.14), rgba(20,24,33,0.9));
+    border:1px solid var(--outline);
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    right:-50px;
+    top:-60px;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(77,243,217,0.35), transparent 70%);
+    opacity:0.7;
+}
+
+h1{
+    font-family:"Staatliches", sans-serif;
+    font-size:42px;
+    margin:0;
+    letter-spacing:1px;
+}
+
+.hero p{
+    margin:0;
+    color:var(--muted);
+    font-size:15px;
+}
+
+.search-wrap{
+    position:sticky;
+    top:10px;
+    z-index:5;
+    margin:18px 0 10px;
+}
+
+.search{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 14px;
+    border-radius:14px;
+    background:var(--panel);
+    border:1px solid var(--outline);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.search span{
+    color:var(--accent-2);
+    font-size:18px;
+}
+
+.search input{
+    width:100%;
+    background:transparent;
+    border:none;
+    color:var(--text);
+    font-size:16px;
+    outline:none;
+    font-family:inherit;
+}
+
+.toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:8px;
+}
+
+.tag{
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:12px;
+    border:1px solid var(--outline);
+    color:var(--muted);
+    background:rgba(255,255,255,0.02);
+}
+
+.section-title{
+    margin:22px 0 10px;
+    font-weight:700;
+    color:var(--accent-2);
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.section-title span{
+    font-size:12px;
+    color:var(--muted);
+    border:1px solid var(--outline);
+    padding:2px 8px;
+    border-radius:999px;
+}
+
+.grid{
+    display:grid;
+    gap:12px;
+}
+
+.card{
+    background:linear-gradient(180deg, var(--panel), var(--panel-2));
+    padding:14px 16px;
+    border-radius:14px;
+    cursor:pointer;
+    border:1px solid var(--outline);
+    transition:transform .15s ease, box-shadow .15s ease, border .15s ease;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    position:relative;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 26px rgba(0,0,0,0.3);
+    border-color:rgba(255,176,0,0.4);
+}
+
+.card .name{
+    font-weight:600;
+}
+
+.card .code{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+.key{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:34px;
+    padding:5px 8px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.16);
+    background:rgba(255,255,255,0.05);
+    color:#e7edf8;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:.3px;
+    line-height:1;
+}
+
+.key.arrow{
+    background:rgba(77,243,217,0.16);
+    border-color:rgba(77,243,217,0.45);
+    color:var(--accent-2);
+}
+
+.key.shape{
+    background:rgba(255,176,0,0.16);
+    border-color:rgba(255,176,0,0.45);
+    color:var(--accent);
+}
+
+.key.trigger{
+    background:rgba(120,159,255,0.17);
+    border-color:rgba(120,159,255,0.45);
+    color:#b8c8ff;
+}
+
+.card .hint{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.card.copied::after{
+    content:"Copied";
+    position:absolute;
+    top:12px;
+    right:12px;
+    font-size:11px;
+    padding:4px 8px;
+    border-radius:999px;
+    background:rgba(77,243,217,0.18);
+    border:1px solid rgba(77,243,217,0.4);
+    color:var(--accent-2);
+}
+
+.footer{
+    text-align:center;
+    opacity:.6;
+    margin-top:26px;
+    font-size:12px;
+}
+
+.toast{
+    position:fixed;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:#0c1018;
+    color:var(--text);
+    border:1px solid var(--outline);
+    padding:10px 14px;
+    border-radius:999px;
+    opacity:0;
+    transition:.2s ease;
+    z-index:10;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+@media (min-width:760px){
+    .grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="splash">
+    <div class="splash-card">
+        <img src="icon.png" alt="GTA logo" onerror="this.style.display='none'">
+        <h2>San Andreas</h2>
+    </div>
+</div>
+
+<div id="app">
+    <div class="container">
+        <div class="hero">
+            <h1>GTA SA PS2 Cheats</h1>
+            <p>Tap any cheat to copy the button combo. Search by effect or category.</p>
+        </div>
+
+        <div class="search-wrap">
+            <div class="search">
+                <span>⌕</span>
+                <input id="search" placeholder="Search cheats..." onkeyup="filterCheats()" autocomplete="off">
+            </div>
+            <div class="toolbar" id="stats"></div>
+        </div>
+
+        <div id="featured"></div>
+        <div id="list"></div>
+
+        <div class="footer">Built for fast copy on mobile.</div>
+    </div>
+</div>
+
+<div id="toast" class="toast">Copied to clipboard</div>
+
+<script>
+setTimeout(()=>{
+    document.getElementById("splash").style.display="none";
+    document.getElementById("app").style.display="block";
+}, 1200);
+
+const cheats = [
+{cat:"Player", name:"Health + Armor + $250K", code:"R1 R2 L1 X ← ↓ → ↑ ← ↓ → ↑"},
+{cat:"Police", name:"Clear Wanted Level", code:"R1 R1 ○ R2 ↑ ↓ ↑ ↓ ↑ ↓"},
+{cat:"Vehicles", name:"Spawn Rhino Tank", code:"○ ○ L1 ○ ○ ○ L1 L2 R1 △ ○ △"},
+{cat:"Vehicles", name:"Spawn Jetpack", code:"L1 L2 R1 R2 ↑ ↓ ← → L1 L2 R1 R2 ↑ ↓ ← →"},
+{cat:"Weapons", name:"Weapon Set 1", code:"R1 R2 L1 R2 ← ↓ → ↑ ← ↓ → ↑"},
+
+{cat:"Player", name:"Infinite Health", code:"↓ X → ← → R1 → ↓ ↑ △"},
+{cat:"Player", name:"Infinite Ammo", code:"L1 R1 □ R1 ← R2 R1 ← □ ↓ L1 L1"},
+{cat:"Player", name:"Max Respect", code:"L1 R1 △ ↓ R2 X L1 ↑ L2 L2 L1 L1"},
+
+{cat:"Vehicles", name:"All Cars Have Nitro", code:"← △ R1 L1 ↑ □ △ ↓ ○ L2 L1 L1"},
+{cat:"Vehicles", name:"Monster Truck", code:"→ ↑ R1 R1 R1 ↓ △ △ X ○ L1 L1"},
+{cat:"Vehicles", name:"Quad Bike", code:"← ← ↓ ↓ ↑ ↑ □ ○ △ R1 R2"},
+
+{cat:"Fun", name:"Super Jump", code:"↑ ↑ △ △ ↑ ↑ ← → □ R2 R2"},
+{cat:"Fun", name:"Super Punch", code:"↑ ← X △ R1 ○ ○ ○ L2"},
+{cat:"Fun", name:"Slow Motion", code:"△ ↑ → ↓ □ R2 R1"},
+
+{cat:"Chaos", name:"Pedestrians Riot", code:"↓ ← ↑ ← X R1 R2 ← ↑ ↓ △"},
+{cat:"Chaos", name:"Aggressive Traffic", code:"△ R1 R1 ← R1 L1 R2 L1"}
+];
+
+const list = document.getElementById("list");
+const featured = document.getElementById("featured");
+const stats = document.getElementById("stats");
+const toast = document.getElementById("toast");
+
+function buildStats(data){
+    const cats = new Set(data.map(c=>c.cat));
+    stats.innerHTML = `
+        <div class="tag">${data.length} cheats</div>
+        <div class="tag">${cats.size} categories</div>
+        <div class="tag">Tap to copy</div>
+    `;
+}
+
+function renderSection(target, title, data){
+    const wrapper = document.createElement("div");
+    const heading = document.createElement("div");
+    heading.className = "section-title";
+    heading.innerHTML = `${title} <span>${data.length}</span>`;
+    wrapper.appendChild(heading);
+
+    const grid = document.createElement("div");
+    grid.className = "grid";
+
+    data.forEach(c=>{
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <div class="name">${c.name}</div>
+            <div class="code">${renderCodeBadges(c.code)}</div>
+            <div class="hint">Tap to copy</div>
+        `;
+        card.onclick = ()=> copyCheat(c.code, card);
+        grid.appendChild(card);
+    });
+
+    wrapper.appendChild(grid);
+    target.appendChild(wrapper);
+}
+
+function render(data){
+    list.innerHTML="";
+    featured.innerHTML="";
+
+    const top = data.slice(0, 5);
+    if(top.length){
+        renderSection(featured, "Popular Picks", top);
+    }
+
+    const cats = [...new Set(data.map(c=>c.cat))];
+    cats.forEach(cat=>{
+        renderSection(list, cat, data.filter(c=>c.cat===cat));
+    });
+
+    buildStats(data);
+}
+
+function filterCheats(){
+    const q = document.getElementById("search").value.toLowerCase();
+    const filtered = cheats.filter(c=>c.name.toLowerCase().includes(q) || c.cat.toLowerCase().includes(q));
+    render(filtered);
+}
+
+function escapeHtml(value){
+    return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+}
+
+function keyClass(token){
+    if(["↑", "↓", "←", "→"].includes(token)) return "arrow";
+    if(["○", "△", "□", "X"].includes(token)) return "shape";
+    if(/^[LR][12]$/.test(token)) return "trigger";
+    return "";
+}
+
+function renderCodeBadges(code){
+    return code
+        .split(" ")
+        .filter(Boolean)
+        .map(token => `<span class="key ${keyClass(token)}">${escapeHtml(token)}</span>`)
+        .join("");
+}
+
+let toastTimer;
+function copyCheat(code, card){
+    navigator.clipboard.writeText(code);
+    card.classList.add("copied");
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>{
+        card.classList.remove("copied");
+        toast.classList.remove("show");
+    }, 1200);
+}
+
+render(cheats);
+
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").catch(err => {
+            console.error("SW registration failed:", err);
+        });
+    });
+}
+</script>
+
+</body>
+</html>
