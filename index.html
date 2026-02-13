@@ -328,6 +328,70 @@ h1{
     transform:translateX(-50%) translateY(0);
 }
 
+.follow-pop{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(5,8,14,0.62);
+    z-index:30;
+    padding:16px;
+}
+
+.follow-pop.show{
+    display:flex;
+}
+
+.follow-card{
+    width:min(420px, 100%);
+    background:linear-gradient(180deg, #121827, #101522);
+    border:1px solid var(--outline);
+    border-radius:16px;
+    padding:18px;
+    box-shadow:var(--shadow);
+    text-align:center;
+}
+
+.follow-title{
+    margin:0 0 8px;
+    font-family:"Staatliches", sans-serif;
+    letter-spacing:1px;
+    font-size:30px;
+}
+
+.follow-text{
+    margin:0 0 14px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.follow-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+.follow-btn{
+    border:none;
+    border-radius:10px;
+    padding:10px 14px;
+    font-weight:700;
+    cursor:pointer;
+    font-family:inherit;
+}
+
+.follow-btn.primary{
+    background:var(--accent);
+    color:#17110a;
+}
+
+.follow-btn.secondary{
+    background:rgba(255,255,255,0.06);
+    color:var(--text);
+    border:1px solid var(--outline);
+}
+
 @media (min-width:760px){
     .grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -368,6 +432,16 @@ h1{
 </div>
 
 <div id="toast" class="toast">Copied to clipboard</div>
+<div id="followPop" class="follow-pop">
+    <div class="follow-card">
+        <h3 class="follow-title">Follow bhaagyadam.edits</h3>
+        <p class="follow-text">Tap follow and support the edits page.</p>
+        <div class="follow-actions">
+            <button id="followNow" class="follow-btn primary">Follow</button>
+            <button id="closeFollow" class="follow-btn secondary">Later</button>
+        </div>
+    </div>
+</div>
 
 <script>
 setTimeout(()=>{
@@ -402,6 +476,9 @@ const list = document.getElementById("list");
 const featured = document.getElementById("featured");
 const stats = document.getElementById("stats");
 const toast = document.getElementById("toast");
+const followPop = document.getElementById("followPop");
+const followNow = document.getElementById("followNow");
+const closeFollow = document.getElementById("closeFollow");
 
 function buildStats(data){
     const cats = new Set(data.map(c=>c.cat));
@@ -505,6 +582,31 @@ if ("serviceWorker" in navigator) {
         });
     });
 }
+
+function showFollowPopup(){
+    const seen = localStorage.getItem("follow-pop-seen");
+    if (seen) return;
+    setTimeout(() => {
+        followPop.classList.add("show");
+    }, 1800);
+}
+
+function closeFollowPopup(markSeen){
+    followPop.classList.remove("show");
+    if (markSeen) localStorage.setItem("follow-pop-seen", "1");
+}
+
+followNow.addEventListener("click", () => {
+    window.open("https://www.instagram.com/bhaagyadam.edits/", "_blank");
+    closeFollowPopup(true);
+});
+
+closeFollow.addEventListener("click", () => closeFollowPopup(true));
+followPop.addEventListener("click", event => {
+    if (event.target === followPop) closeFollowPopup(true);
+});
+
+showFollowPopup();
 </script>
 
 </body>
