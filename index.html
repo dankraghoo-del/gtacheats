@@ -148,6 +148,21 @@ h1{
     font-size:15px;
 }
 
+.hero-actions{
+    margin-top:4px;
+}
+
+.ig-btn{
+    border:none;
+    border-radius:10px;
+    padding:10px 14px;
+    font-weight:700;
+    cursor:pointer;
+    font-family:inherit;
+    background:var(--accent-2);
+    color:#061414;
+}
+
 .search-wrap{
     position:sticky;
     top:10px;
@@ -414,6 +429,9 @@ h1{
         <div class="hero">
             <h1>GTA SA PS2 Cheats</h1>
             <p>Tap any cheat to copy the button combo. Search by effect or category.</p>
+            <div class="hero-actions">
+                <button id="followTop" class="ig-btn">Follow IG: @bhaagyadam.edits</button>
+            </div>
         </div>
 
         <div class="search-wrap">
@@ -479,6 +497,7 @@ const toast = document.getElementById("toast");
 const followPop = document.getElementById("followPop");
 const followNow = document.getElementById("followNow");
 const closeFollow = document.getElementById("closeFollow");
+const followTop = document.getElementById("followTop");
 
 function buildStats(data){
     const cats = new Set(data.map(c=>c.cat));
@@ -584,26 +603,26 @@ if ("serviceWorker" in navigator) {
 }
 
 function showFollowPopup(){
-    const seen = localStorage.getItem("follow-pop-seen");
-    if (seen) return;
     setTimeout(() => {
         followPop.classList.add("show");
     }, 1800);
 }
 
-function closeFollowPopup(markSeen){
+function closeFollowPopup(){
     followPop.classList.remove("show");
-    if (markSeen) localStorage.setItem("follow-pop-seen", "1");
 }
 
 followNow.addEventListener("click", () => {
     window.open("https://www.instagram.com/bhaagyadam.edits/", "_blank");
-    closeFollowPopup(true);
+    closeFollowPopup();
 });
 
-closeFollow.addEventListener("click", () => closeFollowPopup(true));
+closeFollow.addEventListener("click", () => closeFollowPopup());
 followPop.addEventListener("click", event => {
-    if (event.target === followPop) closeFollowPopup(true);
+    if (event.target === followPop) closeFollowPopup();
+});
+followTop.addEventListener("click", () => {
+    window.open("https://www.instagram.com/bhaagyadam.edits/", "_blank");
 });
 
 showFollowPopup();
